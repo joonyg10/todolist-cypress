@@ -1,6 +1,6 @@
 import { SetStateAction, Dispatch } from 'react'
 
-export type IUpdateState<T> = SetStateAction<Dispatch<T>>
+export type IUpdateState<T> = Dispatch<SetStateAction<T>>
 
 export interface ITodo {
   id: string
