@@ -10,7 +10,7 @@ function App() {
     <>
       <h1>Hello world</h1>
       <TodoHeader setTodos={setTodos} />
-      {todos.map((todo: T.ITodo, idx: number) => (
+      {todos.map((todo: T.ITodo) => (
         <p key={todo.id}>{todo.todo}</p>
       ))}
     </>
