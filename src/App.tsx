@@ -1,7 +1,18 @@
+import { useState } from 'react'
+import { TodoHeader } from './components'
+
+import * as T from './types'
+
 function App() {
+  const [todos, setTodos] = useState<T.ITodo[]>([])
+
   return (
     <>
       <h1>Hello world</h1>
+      <TodoHeader setTodos={setTodos} />
+      {todos.map((todo: T.ITodo, idx: number) => (
+        <p key={todo.id}>{todo.todo}</p>
+      ))}
     </>
   )
 }
