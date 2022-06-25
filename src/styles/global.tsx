@@ -15,6 +15,16 @@ const styles = css`
     min-height: 100vh;
   }
 
+  ul,
+  li {
+    list-style: none;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
   button,
   input,
   textarea,
