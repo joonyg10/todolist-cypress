@@ -1,19 +1,24 @@
 import { useState } from 'react'
 import { TodoHeader } from './components'
 
+import * as S from './styles/App.styles'
 import * as T from './types'
 
 function App() {
-  const [todos, setTodos] = useState<T.ITodo[]>([])
+  const [todos, setTodos] = useState<T.ITodo[]>([
+    { id: '1', todo: 'first todo', done: false },
+  ])
 
   return (
-    <>
-      <h1>Hello world</h1>
+    <S.Container>
+      <S.Heading>Hello world</S.Heading>
+      <S.TodosSection>
+        {todos.map((todo: T.ITodo) => (
+          <li key={todo.id}>{todo.todo}</li>
+        ))}
+      </S.TodosSection>
       <TodoHeader setTodos={setTodos} />
-      {todos.map((todo: T.ITodo) => (
-        <p key={todo.id}>{todo.todo}</p>
-      ))}
-    </>
+    </S.Container>
   )
 }
 
