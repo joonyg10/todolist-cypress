@@ -34,13 +34,13 @@ export const TodoItem = ({
   }
 
   return (
-    <li>
-      <S.Container>
-        <Checkbox
-          checked={todo.done}
-          onChange={() => toggleComplete(todo.id)}
-        />
-
+    <S.Container>
+      <Checkbox
+        id={todo.id}
+        checked={todo.done}
+        onChange={() => toggleComplete(todo.id)}
+      />
+      <S.Label htmlFor={todo.id} isEditMode={isEditMode}>
         {isEditMode ? (
           <S.Input
             value={newTodo}
@@ -51,9 +51,9 @@ export const TodoItem = ({
         ) : (
           <S.Typography>{todo.todo}</S.Typography>
         )}
-        <Icon type="EDIT" onClick={toggleEditMode} />
-        <Icon type="DELETE" onClick={() => deleteTodo(todo.id)} />
-      </S.Container>
-    </li>
+      </S.Label>
+      <Icon type="EDIT" onClick={toggleEditMode} />
+      <Icon type="DELETE" onClick={() => deleteTodo(todo.id)} />
+    </S.Container>
   )
 }
