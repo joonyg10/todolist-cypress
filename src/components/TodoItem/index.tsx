@@ -8,15 +8,29 @@ interface IProps {
   todo: T.ITodo
   toggleComplete: (id: string) => void
   deleteTodo: (id: string) => void
+  editTodo: (id: string, newTodo: string) => void
 }
-export const TodoItem = ({ todo, toggleComplete, deleteTodo }: IProps) => {
-  const [editTodo, setEditTodo] = useState<string>(todo.todo ?? '')
+export const TodoItem = ({
+  todo,
+  toggleComplete,
+  deleteTodo,
+  editTodo,
+}: IProps) => {
+  const [newTodo, setNewTodo] = useState<string>(todo.todo ?? '')
   const [isEditMode, setIsEditMode] = useState<boolean>(false)
 
-  const toggleEditMode = () => setIsEditMode((prev) => !prev)
+  const toggleEditMode = () => {
+    if (isEditMode) editTodo(todo.id, newTodo)
+    setIsEditMode((prev) => !prev)
+  }
 
   const _updateEditTodo = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    e.target instanceof HTMLInputElement && setEditTodo(e.target.value)
+    e.target instanceof HTMLInputElement && setNewTodo(e.target.value)
+  }
+
+  const _editTodo = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key !== 'Enter') return
+    toggleEditMode()
   }
 
   return (
@@ -29,9 +43,10 @@ export const TodoItem = ({ todo, toggleComplete, deleteTodo }: IProps) => {
 
         {isEditMode ? (
           <S.Input
-            value={editTodo}
+            value={newTodo}
             onInput={_updateEditTodo}
             placeholder="Enter Your new todo"
+            onKeyDown={_editTodo}
           />
         ) : (
           <S.Typography>{todo.todo}</S.Typography>

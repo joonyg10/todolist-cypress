@@ -23,6 +23,13 @@ function App() {
     )
   }, [])
 
+  const editTodo = (id: string, newTodo: string) => {
+    console.log('change to new tood')
+    setTodos((prev) =>
+      prev.map((_) => (_.id !== id ? _ : { ..._, todo: newTodo })),
+    )
+  }
+
   return (
     <S.Container>
       <S.Heading>Hello world</S.Heading>
@@ -33,6 +40,7 @@ function App() {
             todo={todo}
             deleteTodo={deleteTodo}
             toggleComplete={toggleComplete}
+            editTodo={editTodo}
           />
         ))}
       </S.TodosSection>
