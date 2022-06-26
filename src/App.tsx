@@ -24,7 +24,6 @@ function App() {
   }, [])
 
   const editTodo = (id: string, newTodo: string) => {
-    console.log('change to new tood')
     setTodos((prev) =>
       prev.map((_) => (_.id !== id ? _ : { ..._, todo: newTodo })),
     )
