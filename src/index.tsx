@@ -4,6 +4,15 @@ import App from './App'
 import reportWebVitals from './reportWebVitals'
 import { GlobalStyle } from './styles/global'
 
+if (process.env.NODE_ENV === 'production') {
+  const _init = async (): Promise<void> => {
+    const { worker } = await import('./mocks/browser')
+    await worker.start()
+  }
+
+  _init()
+}
+
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <>

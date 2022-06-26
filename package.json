@@ -53,5 +53,8 @@
     "eslint-plugin-react": "^7.30.0",
     "msw": "^0.42.3",
     "prettier": "^2.6.2"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }

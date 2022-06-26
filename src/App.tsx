@@ -6,11 +6,7 @@ import * as S from './styles/App.styles'
 import * as T from './types'
 
 function App() {
-  const [todos, setTodos] = useState<T.ITodo[]>([
-    { id: '1', todo: 'first todo', done: false },
-    { id: '2', todo: 'second todo', done: false },
-    { id: '3', todo: 'second todo', done: false },
-  ])
+  const [todos, setTodos] = useState<T.ITodo[]>([])
 
   const deleteTodo = useCallback(
     (id: string) => setTodos((prev) => prev.filter((_) => _.id !== id)),
